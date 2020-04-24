@@ -1,7 +1,7 @@
 {
-  "name": "vue-backend",
-  "version": "1.2.0",
-  "description": "前后端分离VUE类模板项目工程",
+  "name": "flow-manage",
+  "version": "1.0.1",
+  "description": "昆山城市安全生产督查",
   "author": "harsima",
   "private": true,
   "scripts": {
