@@ -1,6 +1,4 @@
-/build/
-/config/
-/backend/
-/dist/
-/*.js
-/test/unit/coverage/
+build/*
+config/*
+src/assets/*
+mock/*
