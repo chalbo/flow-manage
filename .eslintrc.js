@@ -1,42 +1,17 @@
 module.exports = {
-    "root": true,
-    "parser": "babel-eslint", 
-    "parserOptions": {
-        "sourceType": "module" 
+    root: true,
+    env: {
+        node: true
     },
-    "env": {
-        "browser": true, 
-        "commonjs": true,
-        "node": true,
-        "es6": true
-    },
-    // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-    // extends: "standard",
-    // required to lint *.vue files
-    "plugins": [
-        "html" 
+    'extends': [
+        'plugin:vue/essential',
+        'eslint:recommended'
     ],
-    // check if imports actually resolve
-    "settings": {
-        "import/resolver": {
-            "webpack": {
-                "config": "build/webpack.base.conf.js"
-            }
-        }
+    rules: {
+        'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+        'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off'
     },
-    // add your custom rules here
-    "rules": {
-        //这里写自定义规则
-        "no-empty": "warn",
-        "no-eval": "warn",
-        "no-implied-eval": "warn",
-        "no-const-assign": "warn",
-        "no-this-before-super": "warn",
-        "no-undef": "warn",
-        "no-unreachable": "warn",
-        "no-unused-vars": "warn",
-        "no-use-before-define": "error",
-        "constructor-super": "warn",
-        "valid-typeof": "warn"
+    parserOptions: {
+        parser: 'babel-eslint'
     }
 }

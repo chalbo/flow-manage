@@ -1,129 +1,168 @@
 <template>
-    <div class="sys-login">
-        <div class="login-area">
-            <div class="logo">
-                <img src="~sysStatic/images/logo.png" alt="">
-            </div>
-            <div class="form-group">
-                <el-form :model="loginForm" :rules="loginRules" ref="loginForm" label-position="left" label-width="0px">
-                    <el-form-item prop="name">
-                        <el-input v-model="loginForm.name" type="text" :placeholder="$t('global.username')"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="password">
-                        <el-input v-model="loginForm.password" type="password" :placeholder="$t('global.password')"></el-input>
-                    </el-form-item>
-                    <el-form-item prop="captcha" v-if="captcha.show" class="captcha">
-                        <img :src="captcha.src" alt="">
-                        <el-input v-model="loginForm.captcha" type="text" :placeholder="$t('global.captcha')"></el-input>
-                    </el-form-item>
-                    <p class="textR">{{$t('global.forgetPassword')}}</p>
-                    <a class="btn-login" type="primary" @click="submitForm()">{{$t('global.login')}}</a>
-                </el-form>
-                <div v-if="sysMsg" class="err-msg">{{sysMsg}}</div>
-            </div>
-            <div class="lang-toggle">
-                <span :class="{cur: lang=='zhCN'}" @click="changeLang('zhCN')">中</span> | 
-                <span :class="{cur: lang=='en'}" @click="changeLang('en')">En</span>
-            </div>
-            <div class="lang-toggle">
-                <span :class="{cur: theme=='theme-default'}" @click="changeTheme('theme-default')">浅</span> | 
-                <span :class="{cur: theme=='theme-dark'}" @click="changeTheme('theme-dark')">深</span>
-            </div>
-            <div class="tip">
-                <p>{{$t('global.loginTip')}}</p>
-            </div>
-        </div>
+  <div class="login-container pull-height"
+       @keyup.enter.native="handleLogin">
+    <div class="login-info text-white animated fadeInLeft">
+      <h2 class="login-info-title">{{website.info.title}}</h2>
+      <ul class="login-info-list">
+        <li class="login-info-item"
+            v-for="item in website.info.list">
+          <i class="el-icon-check"></i>&nbsp;{{item}}
+        </li>
+      </ul>
     </div>
+    <div class="login-border  animated fadeInRight">
+      <div class="login-main">
+        <h4 class="login-title">登录{{website.title}}
+          <top-color></top-color>
+        </h4>
+        <el-tabs v-model="activeName">
+          <el-tab-pane label="用户密码"
+                       name="user">
+            <userLogin></userLogin>
+          </el-tab-pane>
+          <el-tab-pane label="短信验证码"
+                       name="code">
+            <codeLogin></codeLogin>
+          </el-tab-pane>
+          <!-- <el-tab-pane label="第三方授权登录" name="third">
+            <thirdLogin></thirdLogin>
+          </el-tab-pane> -->
+        </el-tabs>
+      </div>
+    </div>
+
+  </div>
 </template>
-
 <script>
-import { mapState, mapActions } from 'vuex'
-import setTheme from "@/util/setTheme"
-
+import userLogin from "./userlogin";
+import codeLogin from "./codelogin";
+import thirdLogin from "./thirdlogin";
+import topColor from "../index/top/top-color";
+import color from "@/mixins/color";
+import { mapGetters } from "vuex";
 export default {
-    data() {
-        return {
-            loginForm: {
-                name: '',
-                password: '',
-                captcha: ''
-            },
-            loginRules: {
-                name: [
-                    {required: true, message: '', trigger: 'blur'}
-                ],
-                password :[
-                    {required: true, message: '', trigger: 'blur'}
-                ],
-                captcha: [
-                    {required: false, message: '', trigger: 'blur'}
-                ]
-            },
-            captcha: {
-                show: false,
-                src: ''
-            },
-            sysMsg: ''
-        }
-    },
-    computed: {
-        ...mapState({
-            lang: state => state.lang,
-            theme: state => state.theme
-        })
-    },
-    watch: {
-        "captcha.show"(val){
-            this.loginRules.captcha[0].required = val
-        }
-    },
-    beforeMount(){
-        // 初始化错误信息。保证单独点击input时可以弹出正确的错误提示
-        this.setErrMsg()
-    },
-    methods: {
-        ...mapActions({
-            login: 'auth/loginByEmail',
-            loadLang: 'loadLang'
-        }),
-        submitForm(){
-            this.$refs.loginForm.validate((valid) => {
-                if (valid) {
-                    this.login({
-                        name: this.loginForm.name,
-                        password: this.loginForm.password
-                    }).then(res => {
-                        if(res.login){
-                            this.$router.push('home')
-                        } else {
-                            this.sysMsg = res.message
-                            this.captcha.show = true
-                            this.captcha.src = res.captcha
-                        }
-                    })
-                } else {
-                    return false
-                }
-            });
-        },
-        changeLang(val){
-            if(val == this.lang) return
-            // 切换语言后重新加载语言包，并对重置登陆表单
-            this.loadLang(val).then(() => {
-                this.setErrMsg()
-                this.$refs.loginForm.resetFields()
-            })
-        },
-        changeTheme(val){
-            if(val == this.lang) return
-            setTheme(val)
-            this.$store.commit("setThemeColor", val)
-        },
-        setErrMsg(){
-            this.loginRules.name[0].message = this.$t('global.errMsg.inputRequired', {cont: this.$t('global.username')})
-            this.loginRules.password[0].message = this.$t('global.errMsg.inputRequired', {cont: this.$t('global.password')})
-            this.loginRules.captcha[0].message = this.$t('global.errMsg.inputRequired', {cont: this.$t('global.captcha')})
-        }
-    }
-}
+  name: "login",
+  mixins: [color()],
+  components: {
+    topColor,
+    userLogin,
+    codeLogin,
+    thirdLogin
+  },
+  data () {
+    return {
+      activeName: "user"
+    };
+  },
+  created () { },
+  mounted () { },
+  computed: {
+    ...mapGetters(["website"])
+  },
+  props: [],
+  methods: {}
+};
 </script>
+
+<style lang="scss">
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+.login-container::before {
+  z-index: -999;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/login.png');
+  background-size: cover;
+}
+.login-info {
+  padding-left: 60px;
+}
+.login-info-title {
+  line-height: 90px;
+}
+.login-info-item {
+  font-size: 14px;
+}
+.login-border {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 30px 50px 25px 50px;
+  background-color: #fff;
+  border-radius: 6px;
+  box-shadow: 1px 1px 2px #eee;
+}
+.login-main {
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: #fff;
+}
+.login-main > h3 {
+  margin-bottom: 20px;
+}
+.login-main > p {
+  color: #76838f;
+}
+.login-title {
+  margin: 0 0 20px;
+  text-align: center;
+  color: #409eff;
+  letter-spacing: 3px;
+}
+.login-submit {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 28px;
+}
+.login-form {
+  margin: 10px 0;
+  .el-form-item__content {
+    width: 270px;
+  }
+  .el-form-item {
+    margin-bottom: 12px;
+  }
+  .el-input {
+    input {
+      text-indent: 5px;
+      border-color: #dcdcdc;
+      border-radius: 3px;
+    }
+    .el-input__prefix {
+      i {
+        padding: 0 5px;
+        font-size: 16px !important;
+      }
+    }
+  }
+}
+.login-code {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 0 0 10px;
+}
+.login-code-img {
+  margin-top: 2px;
+  width: 100px;
+  height: 32px;
+  background-color: #fdfdfd;
+  border: 1px solid #f0f0f0;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  line-height: 32px;
+  text-indent: 5px;
+  text-align: center;
+}
+</style>

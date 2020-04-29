@@ -1,29 +1,54 @@
-// 生产环境中注释掉以下语句
-import 'sysStatic/css/theme-default.scss'
-import '../mock/index.js'
+import Vue from 'vue';
+import axios from './router/axios';
+import VueAxios from 'vue-axios';
+import App from './App';
+import './permission'; // 权限
+import './errorLog'; // 错误日志
+import router from './router/router';
+import store from './store';
+import {
+    loadStyle
+} from './util/util'
+import * as urls from '@/config/env';
+import {
+    iconfontUrl,
+    iconfontVersion
+} from '@/config/env';
+import * as filters from './filters' // 全局filter
+import './styles/common.scss';
+// 引入avue的包
+import '@smallwei/avue/lib/index.js';
+// 引入avue的样式文件
+import '@smallwei/avue/lib/theme-chalk/index.css';
+import basicContainer from './components/basic-container/main'
+import VueClipboard from 'vue-clipboard2'
+// 插件 json 展示
+import vueJsonTreeView from 'vue-json-tree-view'
 
-// import 'babel-polyfill'
-import Vue from "vue"
-import ElementUI from 'element-ui'
-import router from './router'
-import store from './store'
-import axios from './util/ajax'
-import i18n from './util/i18n'
-import App from './index'
+Vue.use(VueClipboard)
 
-import './components/install'
-import './plugins/install'
+Vue.use(vueJsonTreeView)
 
-// 注册组件到Vue
-Vue.prototype.$axios = axios
-Vue.use(ElementUI, {
-  i18n: (key, value) => i18n.t(key, value)
+Vue.use(VueAxios, axios)
+
+Vue.component('basicContainer', basicContainer)
+
+Object.keys(urls).forEach(key => {
+    Vue.prototype[key] = urls[key];
 })
 
+Object.keys(filters).forEach(key => {
+    Vue.filter(key, filters[key])
+})
+
+iconfontVersion.forEach(ele => {
+    loadStyle(iconfontUrl.replace('$key', ele));
+})
+
+Vue.config.productionTip = false;
+
 new Vue({
-  i18n,
-  axios,
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App)
 }).$mount('#app')
