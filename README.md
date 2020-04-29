@@ -7,14 +7,12 @@
 # 安装项目依赖
 npm install
 
-# 开启本地服务，默认为localhost:9000
-npm run dev
+# 开启本地服务，默认为localhost:8081
+npm run serve
 
 # 项目打包，构建生产环境
 npm run build
-
-# 打包过程中想查看具体报告则可以通过以下命令实现
-npm run build --report
+ 
 ```
 
 ## Nginx简单部署配置

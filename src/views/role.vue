@@ -2,24 +2,35 @@
   <div class="pull-chheight role-container">
     <basic-container>
       <p>当前用户的权限值是有权限时(admin) 时，才可以看到菜单有这个页面。</p>
-      <el-switch v-model="roleSwitch" active-color="#13ce66" inactive-color="#ff4949" active-value="admin" active-text="有权限(admin)" inactive-value="user" inactive-text="无权限(user)" @change="handlechange">
-      </el-switch>
+      <el-switch
+        v-model="roleSwitch"
+        active-color="#13ce66"
+        inactive-color="#ff4949"
+        active-value="admin"
+        active-text="有权限(admin)"
+        inactive-value="user"
+        inactive-text="无权限(user)"
+        @change="handlechange"
+      ></el-switch>
     </basic-container>
     <basic-container>
-      <p>当前用户的权限值是有权限时(admin) 时。才能看到全部按钮</p>
+      <avue-form-design :options="options" @submit="handleSubmit" storage></avue-form-design>
+
+      <!-- <p>当前用户的权限值是有权限时(admin) 时。才能看到全部按钮</p>
       <el-button v-if="permission.sys_role_btn1">默认按钮</el-button>
       <el-button type="primary" v-if="permission.sys_role_btn2">主要按钮</el-button>
       <el-button type="success" v-if="permission.sys_role_btn3">成功按钮</el-button>
       <el-button type="info" v-if="permission.sys_role_btn4">信息按钮</el-button>
       <el-button type="warning" v-if="permission.sys_role_btn5">警告按钮</el-button>
-      <el-button type="danger" v-if="permission.sys_role_btn6">危险按钮</el-button>
+      <el-button type="danger" v-if="permission.sys_role_btn6">危险按钮</el-button>-->
     </basic-container>
-
   </div>
 </template>
 
 <script>
 import { mapGetters } from "vuex";
+// import AvueFormDesign from "avue-form-design";
+
 export default {
   name: "role",
   data() {
@@ -33,6 +44,7 @@ export default {
   computed: {
     ...mapGetters(["roles", "permission"])
   },
+  // components: { "avue-form-design": AvueFormDesign },
   methods: {
     handlechange(val) {
       this.$store.commit("SET_ROLES", [val]);
@@ -52,5 +64,4 @@ export default {
 </script>
 
 <style scoped="scoped" lang="scss">
-
 </style>
