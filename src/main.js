@@ -25,6 +25,8 @@ import VueClipboard from 'vue-clipboard2'
 // 插件 json 展示
 import vueJsonTreeView from 'vue-json-tree-view'
 import AvueFormDesign from './packages/';
+import AvueUeditor from 'avue-plugin-ueditor'
+import AvueMap from 'avue-plugin-map'
 
 Vue.use(AvueFormDesign)
 

@@ -8,3 +8,4 @@ coverage
 *.woff
 *.ttf
 src
+public/*
