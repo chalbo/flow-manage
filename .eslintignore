@@ -9,3 +9,4 @@ coverage
 *.ttf
 src
 public/*
+topology/*

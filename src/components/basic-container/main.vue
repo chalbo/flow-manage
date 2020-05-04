@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss">
 .basic-container {
-  padding: 20px;
+  padding: 10px;
   border-radius: 6px;
 }
 </style>
