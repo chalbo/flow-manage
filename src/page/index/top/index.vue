@@ -3,9 +3,11 @@
     <div class="top-button is-left">
       <!-- breadcrumb按钮和面包屑 -->
       <div class="tags-breadcrumb">
-        <i class="icon-navicon tag-collapse"
-           :class="[{ 'tag-collapse_right': isCollapse }]"
-           @click="showCollapse"></i>
+        <i
+          class="el-icon-s-fold tag-collapse"
+          :class="[{ 'tag-collapse_right': isCollapse }]"
+          @click="showCollapse"
+        ></i>
         <!-- <top-breadcrumb class="tags-breadcrumb-list"></top-breadcrumb> -->
       </div>
     </div>
@@ -13,45 +15,28 @@
       <topMenu></topMenu>
     </h1>
     <div class="top-button is-right">
-      <el-tooltip class="item"
-                  effect="dark"
-                  content="主题色"
-                  placement="bottom">
+      <el-tooltip class="item" effect="dark" content="主题色" placement="bottom">
         <span class="top-item">
           <top-color></top-color>
         </span>
       </el-tooltip>
-      <el-tooltip class="item"
-                  effect="dark"
-                  content="锁屏"
-                  placement="bottom">
+      <el-tooltip class="item" effect="dark" content="锁屏" placement="bottom">
         <span class="top-item">
           <top-lock></top-lock>
         </span>
       </el-tooltip>
-      <el-tooltip class="item"
-                  effect="dark"
-                  content="特色主题"
-                  placement="bottom">
+      <el-tooltip class="item" effect="dark" content="特色主题" placement="bottom">
         <span class="top-item">
           <top-theme></top-theme>
         </span>
       </el-tooltip>
-      <el-tooltip class="item"
-                  effect="dark"
-                  :content="isFullScren?'退出全屏':'全屏'"
-                  placement="bottom">
+      <el-tooltip class="item" effect="dark" :content="isFullScren?'退出全屏':'全屏'" placement="bottom">
         <span class="top-item">
-          <i :class="isFullScren?'icon-tuichuquanping':'icon-quanping'"
-             @click="handleScreen"></i>
+          <i :class="isFullScren?'icon-tuichuquanping':'icon-quanping'" @click="handleScreen"></i>
         </span>
       </el-tooltip>
-      <el-tooltip class="item"
-                  effect="dark"
-                  content="用户头像"
-                  placement="bottom">
-        <img class="top-userImg"
-             :src="userInfo.avatar">
+      <el-tooltip class="item" effect="dark" content="用户头像" placement="bottom">
+        <img class="top-userImg" :src="userInfo.avatar" />
       </el-tooltip>
       <el-dropdown>
         <span class="el-dropdown-link">
@@ -66,15 +51,12 @@
             <router-link to="/info/index">个人信息</router-link>
           </el-dropdown-item>
           <el-dropdown-item>
-            <a href="https://gitee.com/smallweigit/avue"
-               target="_blank">码云地址</a>
+            <a href="https://gitee.com/smallweigit/avue" target="_blank">码云地址</a>
           </el-dropdown-item>
           <el-dropdown-item>
-            <a href="https://github.com/nmxiaowei/avue"
-               target="_blank">github</a>
+            <a href="https://github.com/nmxiaowei/avue" target="_blank">github</a>
           </el-dropdown-item>
-          <el-dropdown-item @click.native="logout"
-                            divided>退出系统</el-dropdown-item>
+          <el-dropdown-item @click.native="logout" divided>退出系统</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -91,12 +73,12 @@ import topTheme from "./top-theme";
 export default {
   components: { topLock, topMenu, topBreadcrumb, topColor, topTheme },
   name: "top",
-  data () {
+  data() {
     return {};
   },
   filters: {},
-  created () { },
-  mounted () {
+  created() {},
+  mounted() {
     listenfullscreen(this.setScreen);
   },
   computed: {
@@ -110,16 +92,16 @@ export default {
     ])
   },
   methods: {
-    handleScreen () {
+    handleScreen() {
       fullscreenToggel();
     },
-    showCollapse () {
+    showCollapse() {
       this.$store.commit("SET_COLLAPSE");
     },
-    setScreen () {
+    setScreen() {
       this.$store.commit("SET_FULLSCREN");
     },
-    logout () {
+    logout() {
       this.$confirm("是否退出系统, 是否继续?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",

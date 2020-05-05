@@ -4,7 +4,7 @@
     <avue-form-design
       :options="options"
       :aside-left-width="270"
-      :aside-right-width="180"
+      :aside-right-width="250"
       @submit="handleSubmit"
     ></avue-form-design>
     <!-- </basic-container> -->
@@ -43,8 +43,10 @@ export default {
 <style  lang="scss">
 .form-designer .widget-config-container .el-tabs__header {
   position: relative;
+  width: 250px;
 }
-.widget-config-container {
-  width: 200px;
+.form-designer .widget-config-container {
+  width: 250px;
+  margin-top: 0px;
 }
 </style>

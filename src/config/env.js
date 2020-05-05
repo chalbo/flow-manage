@@ -13,7 +13,8 @@
 
 let baseUrl = '';
 let iconfontVersion = ['567566_r22zi6t8noas8aor'];
-let iconfontUrl = `//at.alicdn.com/t/font_$key.css`;
+//let iconfontUrl = `//at.alicdn.com/t/font_$key.css`;
+let iconfontUrl = `/toolfont/font.css`;
 let codeUrl = `${baseUrl}/code`
 const env = process.env
 if (env.NODE_ENV == 'development') {

@@ -3,15 +3,15 @@ import {
 } from '@/config/env'
 const first = [{
   id: 33,
-  label: "引导页",
+  label: "首页",
   href: '/guide/index',
-  icon: 'icon-canshu',
+  icon: 'el-icon-c-scale-to-original',
   children: [],
 }, {
   id: 13,
   label: "权限测试页",
   href: '/role/index',
-  icon: 'icon-quanxian',
+  icon: 'el-icon-date',
   meta: {
     roles: ['admin'],
   },
@@ -20,26 +20,26 @@ const first = [{
   id: 14,
   label: "数据展示",
   href: '/exhibition/index',
-  icon: 'icon-shujuzhanshi2',
+  icon: 'el-icon-takeaway-box',
   children: [],
 }, {
   id: 2,
   label: "系统管理",
   href: '',
-  icon: 'icon-iframe',
+  icon: 'el-icon-setting',
   meta: {},
   children: [{
     id: 3,
     label: "模版编辑",
     href: '/form-design/index',
-    icon: 'icon-quanxian',
+    icon: 'el-icon-s-order',
     children: [],
   },
   {
     id: 4,
     label: "流程编辑",
     href: '/topology',
-    icon: 'icon-quanxian',
+    icon: 'el-icon-sort',
     children: [],
   },
     //   {
