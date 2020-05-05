@@ -3,8 +3,8 @@
     <!-- <basic-container> -->
     <avue-form-design
       :options="options"
-      :aside-left-width="270"
-      :aside-right-width="250"
+      :aside-left-width="asideLeftWidth"
+      :aside-right-width="asideRightWidth"
       @submit="handleSubmit"
     ></avue-form-design>
     <!-- </basic-container> -->
@@ -29,6 +29,8 @@ export default {
         // labelWidth: 120,
         // gutter: 0
       },
+      asideLeftWidth: "270px",
+      asideRightWidth: "250px",
       roleSwitch: ""
     };
   },
