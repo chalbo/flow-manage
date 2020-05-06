@@ -6,7 +6,7 @@ export default {
   lockPage: '/lock',
   tokenTime: 6000,
   info: {
-    title: "Avue 通用管理系统快速开发框架",
+    title: "中科曙光通用流程管理系统",
     list: [
       'Avue 是一个基于vue+vuex+vue-router快速后台管理模板，采用token交互验证方式。',
       '您可以 Avue 为基础，不只限制于vue的页面，你可以嵌入任意第三方网站，基于iframe框架。',
@@ -14,7 +14,7 @@ export default {
     ]
   },
   wel: {
-    title: 'Avue 通用管理系统快速开发框架',
+    title: '中科曙光通用流程管理系统',
     list: [
       'vuex本地持久化存储,封装h5的sessionStorage和localStorage',
       '加入了本地离线的包引入方法去引入vue，vue-router等第三方包',
