@@ -159,7 +159,8 @@ export default [{
     component: () =>
       import('@/views/select/index')
   }]
-}, {
+},
+{
   path: '/iconfont',
   component: Layout,
   redirect: '/iconfont/index',
@@ -169,7 +170,8 @@ export default [{
     component: () =>
       import('@/views/iconfont/index')
   }]
-}, {
+},
+{
   path: '/errlog',
   component: Layout,
   redirect: '/errlog/index',

@@ -145,6 +145,21 @@
       <div class="title"></div>
       <div class="items">
         <div class="flex grid">
+          <div class="custom-data">自定义事件</div>
+        </div>
+        <div class="flex grid">
+          <div class="expand-data">
+            <el-input
+              type="textarea"
+              v-model="props.node.events"
+              :rows="props.expand ? 15 : 3"
+              @change="onChange"
+            ></el-input>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="items">
+        <div class="flex grid">
           <div class="custom-data">
             自定义数据
             <i
@@ -164,7 +179,7 @@
             ></el-input>
           </div>
         </div>
-      </div>
+      </div>-->
     </div>
   </div>
 </template>

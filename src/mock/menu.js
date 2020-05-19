@@ -124,14 +124,16 @@ const first = [{
     meta: {},
     children: []
   }]
-}, {
-  id: 7,
-  label: "阿里图标",
-  href: '/iconfont/index',
-  icon: 'icon-changyonglogo27',
-  meta: {},
-  children: []
-}, {
+},
+// {
+//   id: 7,
+//   label: "阿里图标",
+//   href: '/iconfont/index',
+//   icon: 'icon-changyonglogo27',
+//   meta: {},
+//   children: []
+// }, 
+{
   id: 15,
   label: "高级路由",
   href: '#',

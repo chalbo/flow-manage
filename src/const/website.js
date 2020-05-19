@@ -1,5 +1,5 @@
 export default {
-  title: "中科曙光",
+  title: "通用流程管理",
   logo: "A",
   author: "",
   whiteList: ["/login", "/404", "/401", "/lock"],
