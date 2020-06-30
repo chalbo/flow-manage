@@ -7,6 +7,7 @@ const path = require('path');
 const router2controller = require('./app/router2controller');
 const config = require('./config/config.local.js');
 const proxy = require('koa-server-http-proxy'); //引入代理模块
+const koaSwagger = require('koa2-swagger-ui');//swaggerui引入
 
 const app = new Koa();
 const proxyOptions = {
@@ -45,6 +46,15 @@ const session_config = {
   renew: false, /** 是否在Session快过期时刷新Session的有效期。(默认是 false) */
 };
 // const logger=require("./app/common/logger");
+
+app.use(
+  koaSwagger({
+    routePrefix: '/swagger', // host at /swagger instead of default /docs
+    swaggerOptions: {
+      url: './swagger.json', // example path to json
+    },
+  }),
+);
 
 const session = Koa_Session(session_config, app)
 app.keys = session_signed_key;

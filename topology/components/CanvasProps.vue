@@ -143,7 +143,7 @@
       </div>
       <div class="items gray" style="line-height: 1.5">内边距：输入数字表示像素；输入%表示百分比</div>
       <div class="title"></div>
-      <div class="items">
+      <!-- <div class="items">
         <div class="flex grid">
           <div class="custom-data">自定义事件</div>
         </div>
@@ -157,8 +157,8 @@
             ></el-input>
           </div>
         </div>
-      </div>
-      <!-- <div class="items">
+      </div>-->
+      <div class="items">
         <div class="flex grid">
           <div class="custom-data">
             自定义数据
@@ -179,7 +179,7 @@
             ></el-input>
           </div>
         </div>
-      </div>-->
+      </div>
     </div>
   </div>
 </template>
