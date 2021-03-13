@@ -15,25 +15,4 @@ npm run build
  
 ```
 
-## Nginx简单部署配置
-
-将打包后的文件放到Nginx安装目录中的html文件夹内，然后对Nginx进行简单配置即可。
-
-```
-...
-# 以上保持默认配置即可
-
-server {
-    listen       9090;
-    server_name  localhost;
-    # 项目文件目录
-    root   html/vue-backend;
-    index  index.html index.htm;
-
-    location / {
-        # vue-router使用history模式下的必须配置
-        try_files $uri $uri/ /index.html;
-        index index.html;
-    }
-}
-```
+##  已完成流程图配置，自动表单配置，前端框架搭建，数据库业务设计，原型。未开发
